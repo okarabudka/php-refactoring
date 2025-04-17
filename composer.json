@@ -1,0 +1,14 @@
+{
+    "name": "akrbdk/php-refactoring",
+    "type": "project",
+    "description": "PHP refactoring tasks",
+    "authors": [
+        {
+            "name": "Alex Karabudka",
+            "email": "akarabudka@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    }
+}
