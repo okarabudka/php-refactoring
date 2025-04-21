@@ -4,9 +4,8 @@ namespace src\refactors\example\after;
 
 class ClassAfter
 {
-    public static function isPalindrome(string $string): bool
+    public static function run(): void
     {
-        $normalized = strtolower(str_replace(' ', '', $string));
-        return $normalized === strrev($normalized);
+        echo "Running after class\n";
     }
 }

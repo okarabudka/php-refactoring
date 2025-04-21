@@ -4,14 +4,8 @@ namespace src\refactors\example\before;
 
 class ClassBefore
 {
-    public static function isPalindrome($string)
+    public static function run(): void
     {
-        $string = strtolower(str_replace(' ', '', $string));
-        $reversed = strrev($string);
-        if ($reversed === $string) {
-            return true;
-        } else {
-            return false;
-        }
+        echo "Running before class\n";
     }
 }
