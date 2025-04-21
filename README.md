@@ -7,7 +7,7 @@ This repository created for educational purposes.
 1. Clone the project using git
 2. Copy `.env.example` into `.env` (Don't need to change anything for local development)
 3. Navigate to the project root directory and run `docker compose up -d`
-4. Install dependencies - `docker compose exec app composer install`
+4. Install dependencies - `docker exec php-refactoring composer install`
 5. Open in browser http://127.0.0.1:8080
 
 
