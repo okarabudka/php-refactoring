@@ -1,6 +1,6 @@
 <?php
 
-namespace src\refactors\task4\before;
+namespace src\refactors\task3\before;
 
 class Invoice
 {
