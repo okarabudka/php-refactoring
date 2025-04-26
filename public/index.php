@@ -18,6 +18,6 @@ echo 'Run your script here!<br><br>';
 //\src\refactors\task3\after\ClassAfter::run();
 
 
-//\src\refactors\task4\before\ClassBefore::run();
-//echo '<br>';
-//\src\refactors\task4\after\ClassAfter::run();
+\src\refactors\task4\before\ClassBefore::run();
+echo '<br>';
+\src\refactors\task4\after\ClassAfter::run();

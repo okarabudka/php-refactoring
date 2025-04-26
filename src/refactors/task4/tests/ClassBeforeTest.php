@@ -2,40 +2,48 @@
 
 namespace src\refactors\task4\tests;
 
+use Couchbase\User;
+use Exception;
 use PHPUnit\Framework\TestCase;
-use src\refactors\task4\before\Invoice;
-use TypeError;
+use src\refactors\task4\before\UserManager;
 
 class ClassBeforeTest extends TestCase
 {
-    public function testCorrectTotal()
+    public function testRegisterValidUser(): void
     {
-        $invoice = new Invoice([
-            ['price' => 100, 'quantity' => 2, 'discount' => 0.1, 'tax' => 0.2], // 100*2 = 200 → -10% = 180 → +20% = 216
-            ['price' => 50, 'quantity' => 1, 'discount' => 0, 'tax' => 0]       // = 50
-        ]);
+        $userManager = new UserManager();
 
-        $this->assertEquals(266, $invoice->getTotal());
+        $this->expectNotToPerformAssertions();
+
+        $userManager->register([
+            'email' => 'alex@test.com',
+            'password' => '12345678'
+        ]);
     }
 
-    public function testIncorrectTotal()
+    public function testRegisterUserWithInvalidEmail(): void
     {
-        $invoice = new Invoice([
-            ['price' => 100, 'quantity' => 2, 'discount' => 0.1, 'tax' => 0.2], // 100*2 = 200 → -10% = 180 → +20% = 216
-            ['price' => 50, 'quantity' => 1, 'discount' => 0, 'tax' => 0]       // = 50
-        ]);
+        $userManager = new UserManager();
 
-        $this->assertNotEquals(100, $invoice->getTotal());
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Invalid email');
+
+        $userManager->register([
+            'email' => 'alex_test.com',
+            'password' => '12345678'
+        ]);
     }
 
-    public function testFalseIncomingData()
+    public function testRegisterUserWithInvalidPassword(): void
     {
-        $invoice = new Invoice([
-            'price' => '100', 'quantity' => '2', 'discount' => '0.1', 'tax' => '0.2'
+        $userManager = new UserManager();
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Password too short');
+
+        $userManager->register([
+            'email' => 'alex@test.com',
+            'password' => '1234'
         ]);
-
-        $this->expectException(TypeError::class);
-
-        $invoice->getTotal();
     }
 }
