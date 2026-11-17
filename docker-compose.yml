@@ -1,7 +1,7 @@
 services:
   app:
     build: ./docker
-    image: akrbdk/php_refactoring
+    image: okarabudka/php_refactoring
     ports:
       - "8080:80"
     volumes:
