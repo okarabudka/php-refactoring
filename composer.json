@@ -2,6 +2,7 @@
     "name": "okarabudka/php-refactoring",
     "type": "project",
     "description": "PHP refactoring tasks",
+    "license": "MIT",
     "authors": [
         {
             "name": "Alex Karabudka",
