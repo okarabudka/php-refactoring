@@ -1,12 +1,15 @@
 <?php
 
-namespace src\refactors\task3\before;
+declare(strict_types=1);
+
+namespace Okarabudka\Refactoring\Task3\Before;
 
 class Invoice
 {
     public function __construct(private array $items) {}
 
-    public function getTotal() {
+    public function getTotal()
+    {
         $total = 0;
         foreach ($this->items as $item) {
             $price = $item['price'];
