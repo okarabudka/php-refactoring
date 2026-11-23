@@ -1,0 +1,14 @@
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    # The "before" code is the smell under study: untyped on purpose, so it is only run by the tests.
+    excludePaths:
+        analyse:
+            - src/*/Before/*
