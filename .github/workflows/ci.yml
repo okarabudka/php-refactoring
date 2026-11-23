@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          coverage: none
+          tools: composer:v2
+          # Task 4 "before" calls mail(); deliver nowhere instead of needing an MTA.
+          ini-values: sendmail_path=/bin/true
+      - run: composer validate --strict
+      - run: composer install --no-interaction --no-progress
+      - name: PSR-4 autoloading on a case-sensitive file system
+        run: composer dump-autoload -o --strict-psr
+      - name: Code style
+        run: composer cs
+      - name: Static analysis
+        run: composer stan
+      - name: Tests
+        run: composer test
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
