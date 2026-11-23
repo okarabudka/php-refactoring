@@ -1,17 +1,22 @@
 <?php
 
-namespace src\refactors\task1\before;
+declare(strict_types=1);
 
-class Order {
+namespace Okarabudka\Refactoring\Task1\Before;
+
+class Order
+{
     public $items;
     public $totalPrice;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->items = [];
         $this->totalPrice = 0;
     }
 
-    public function addItem($name, $price, $quantity) {
+    public function addItem($name, $price, $quantity)
+    {
         $found = false;
         foreach ($this->items as &$item) {
             if ($item['name'] == $name) {
@@ -26,17 +31,19 @@ class Order {
                 'name' => $name,
                 'price' => $price,
                 'quantity' => $quantity,
-                'total' => $price * $quantity
+                'total' => $price * $quantity,
             ];
         }
         $this->totalPrice += $price * $quantity;
     }
 
-    public function getTotalPrice() {
+    public function getTotalPrice()
+    {
         return $this->totalPrice;
     }
 
-    public function printReceipt() {
+    public function printReceipt()
+    {
         echo "Receipt:\n";
         foreach ($this->items as $item) {
             echo "{$item['name']} x{$item['quantity']} - \${$item['total']}\n";
